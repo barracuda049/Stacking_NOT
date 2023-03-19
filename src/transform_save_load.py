@@ -1,7 +1,7 @@
 import torch
 from torch.utils.data import Subset, DataLoader
 from torch.utils.data import TensorDataset
-from distributions import Sampler, LoaderSampler
+from .distributions import LoaderSampler
 
 def transform_data(sampler, name, model):
 
@@ -19,8 +19,11 @@ def transform_data(sampler, name, model):
 
     
 def new_samplers(path_to_new_data, batch_size = 64, device = 'cuda', test_ratio = 0.1):
+    loaded_new_data = []
+    for i in path_to_new_data:
+        loaded_new_data.append(torch.load(i))
 
-    loaded_new_data = torch.load(path_to_new_data)
+    loaded_new_data = torch.cat(loaded_new_data, dim = 0)
 
 
     dataset = TensorDataset(loaded_new_data, torch.zeros(len(loaded_new_data)).view(-1, 1))
@@ -34,3 +37,14 @@ def new_samplers(path_to_new_data, batch_size = 64, device = 'cuda', test_ratio 
     test_sampler = LoaderSampler(DataLoader(test_set, shuffle=True, num_workers=8, batch_size=batch_size), device = device)
 
     return train_sampler, test_sampler
+
+
+
+def new_sample_the_same(path_to_new_data, batch_size = 64, device = 'cuda'):
+
+    loaded_new_data = torch.load(path_to_new_data)
+    
+    dataset = TensorDataset(loaded_new_data, torch.zeros(len(loaded_new_data)).view(-1, 1))
+    sampler = LoaderSampler(DataLoader(dataset, shuffle=False, num_workers=8, batch_size=batch_size), device = device)
+
+    return sampler
