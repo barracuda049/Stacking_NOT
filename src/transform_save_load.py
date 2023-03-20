@@ -3,13 +3,14 @@ from torch.utils.data import Subset, DataLoader
 from torch.utils.data import TensorDataset
 from .distributions import LoaderSampler
 
-def transform_data(sampler, save_path, model):
+def transform_data(sampler, save_path, model): # device='cuda'
 
     loader = sampler.loader
 
     preds = []
     with torch.no_grad():
         for batch, _ in loader:
+            # batch = batch.to(device)
             pred = model(batch)
             preds.append(pred)
 
@@ -18,12 +19,12 @@ def transform_data(sampler, save_path, model):
     torch.save(new_sampler, save_path)
     print('Done!')
 
-def new_sample_the_same(path_to_new_data, batch_size=64, device='cuda'):
+def new_sample_the_same(path_to_new_data, batch_size=64, device='cuda', shuffle=False):
     
     loaded_new_data = torch.load(path_to_new_data)
     
     dataset = TensorDataset(loaded_new_data, torch.zeros(len(loaded_new_data)).view(-1, 1))
-    sampler = LoaderSampler(DataLoader(dataset, shuffle=False, num_workers=8, batch_size=batch_size), device=device)
+    sampler = LoaderSampler(DataLoader(dataset, shuffle=shuffle, num_workers=8, batch_size=batch_size), device=device)
 
     return sampler
 
