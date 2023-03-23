@@ -4,6 +4,13 @@ from torch.utils.data import TensorDataset
 from .distributions import LoaderSampler
 
 def transform_data(sampler, save_path, model): # device='cuda'
+    """_summary_
+
+    Args:
+        sampler (_type_): _description_
+        save_path (_type_): _description_
+        model (_type_): _description_
+    """
 
     loader = sampler.loader
 
@@ -20,6 +27,17 @@ def transform_data(sampler, save_path, model): # device='cuda'
     print('Done!')
 
 def new_sample_the_same(path_to_new_data, batch_size=64, device='cuda', shuffle=False):
+    """_summary_
+
+    Args:
+        path_to_new_data (_type_): _description_
+        batch_size (int, optional): _description_. Defaults to 64.
+        device (str, optional): _description_. Defaults to 'cuda'.
+        shuffle (bool, optional): _description_. Defaults to False.
+
+    Returns:
+        _type_: _description_
+    """
     
     loaded_new_data = torch.load(path_to_new_data)
     
