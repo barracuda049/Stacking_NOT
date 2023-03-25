@@ -3,7 +3,7 @@ from torch.utils.data import Subset, DataLoader
 from torch.utils.data import TensorDataset
 from .distributions import LoaderSampler
 
-def transform_data(sampler, save_path, model): # device='cuda'
+def transform_data(sampler, save_path, model, device='cpu'):
     """
     This function is used to save mapped distribution
 
@@ -18,7 +18,7 @@ def transform_data(sampler, save_path, model): # device='cuda'
     preds = []
     with torch.no_grad():
         for batch, _ in loader:
-            # batch = batch.to(device)
+            batch = batch.to(device)
             pred = model(batch)
             preds.append(pred)
 
