@@ -4,12 +4,13 @@ from torch.utils.data import TensorDataset
 from .distributions import LoaderSampler
 
 def transform_data(sampler, save_path, model): # device='cuda'
-    """_summary_
+    """
+    This function is used to save mapped distribution
 
     Args:
-        sampler (_type_): _description_
-        save_path (_type_): _description_
-        model (_type_): _description_
+        sampler (LoaderSampler): input distribution that we want to map. Example: X_sampler
+        save_path (str): path where the mapped distribution will be saved
+        model (UNet): trained model 
     """
 
     loader = sampler.loader
@@ -27,16 +28,17 @@ def transform_data(sampler, save_path, model): # device='cuda'
     print('Done!')
 
 def new_sample_the_same(path_to_new_data, batch_size=64, device='cuda', shuffle=False):
-    """_summary_
+    """
+    This function is used to load the mapped distrinution and return sampler
 
     Args:
-        path_to_new_data (_type_): _description_
-        batch_size (int, optional): _description_. Defaults to 64.
-        device (str, optional): _description_. Defaults to 'cuda'.
-        shuffle (bool, optional): _description_. Defaults to False.
+        path_to_new_data (str): expected the path to saved sampler. Example: "X_sampler_new.pt"
+        batch_size (int): the size of batch. Defaults to 64.
+        device (str): set device. Defaults to 'cuda'.
+        shuffle (bool): Set True if you want to shuffle the data. Defaults to False.
 
     Returns:
-        _type_: _description_
+        LoaderSampler: return new sampler
     """
     
     loaded_new_data = torch.load(path_to_new_data)
