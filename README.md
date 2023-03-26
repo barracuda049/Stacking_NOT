@@ -43,7 +43,6 @@ Stacking Neural Optimal Transport final project defence in machine learning cour
     <img src="./imgs/hyper_scores.png" width="500" />
 </p>
 
-## Results
 * Thus, statistically significant improvement of the FID-metric is not achieved
 * Recommendation: Check Stacking-like approach on Weak NOT
 
