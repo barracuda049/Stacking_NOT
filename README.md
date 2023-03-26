@@ -11,9 +11,15 @@
 Stacking Neural Optimal Transport final project defence in machine learning course (24 March 2023, Eng, [slides](./presentation/Team_4_SNOT.pptx))
 
 
-## Conducted experiments
+## Notebooks and Conducted experiments
 
-* Handbags, shoes [datasets](https://github.com/junyanz/iGAN/blob/master/train_dcgan/README.md)
+* Original notebooks with full-fledged conducted experiments are in the [stacking_notebooks](https://github.com/barracuda049/Stacking_NOT/tree/main/stacking_notebooks) folder.
+
+* For further research please use [SNOT_strong.ipynb](https://github.com/barracuda049/Stacking_NOT/blob/main/SNOT_strong.ipynb). This notebook collects notebooks from [stacking_notebooks](https://github.com/barracuda049/Stacking_NOT/tree/main/stacking_notebooks) folder in one place.
+
+* Do not forget to download *"shoes_64.hdf5"* and *"handbag_64.hdf5"* to the folder *"data"* from [datasets](https://github.com/junyanz/iGAN/blob/master/train_dcgan/README.md).
+
+
 
 <p align="center">
     <img src="./imgs/block_diagram.png" width="800" />
@@ -36,6 +42,11 @@ Stacking Neural Optimal Transport final project defence in machine learning cour
     <img src="./imgs/baseline_scores.png" width="500" />
     <img src="./imgs/hyper_scores.png" width="500" />
 </p>
+
+## Results
+* Thus, statistically significant improvement of the FID-metric is not achieved
+* Recommendation: Check Stacking-like approach on Weak NOT
+
 
 ## References
 
